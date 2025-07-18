@@ -7,7 +7,7 @@ const mongodb = require("mongodb");
 router.post("/reg", async function (req, res, next) {
   try {
     const name = req.body.name;
-    const loc = req.body.loc;
+    const location = req.body.location;
     const phone = req.body.phone;
     const email = req.body.email;
 
@@ -21,7 +21,7 @@ router.post("/reg", async function (req, res, next) {
 
     const collection = db.collection("users");
 
-    const result = await collection.insertOne({ name, loc, phone, email });
+    const result = await collection.insertOne({ name, location, phone, email });
 
     res.send(result);
   } catch (error) {
