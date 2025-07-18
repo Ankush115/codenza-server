@@ -29,5 +29,19 @@ router.post("/reg", async function (req, res, next) {
     res.send(error.message);
   }
 });
+router.get("/get-users",async function (req, res, next) {
+  const url =
+    "mongodb+srv://alwagh45:stepup@codenzaproject.6exl2o1.mongodb.net/";
 
+  const mongoclient = mongodb.MongoClient;
+
+  const server =await mongoclient.connect(url);
+
+  const db = server.db("stepup");
+
+  const collection = db.collection("users");
+
+  const result = await collection.find({}).toArray();
+  res.send(result);
+});
 module.exports = router;
